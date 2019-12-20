@@ -73,6 +73,13 @@ float: left;
     width: fit-content;
 }
 
+.drawer-icon {
+    color: white;
+    overflow: hidden;
+    display: inline-block;
+    margin: 10px;
+}
+
 .hiring {
     display: inline-block;
     border-bottom: 2px solid transparent;
@@ -134,15 +141,14 @@ float: left;
 }
 
 .green-dash {
-    height: 10px;
-    width: 80px;
-    background-color: green;
+    height: 4px;
+    width: 25px;
+    background-color: #37cb9d;
 }
 section {
     padding-top: 20px;
-    display: flex;
     width:100vw;
-    height:100vh;
+    min-height:100vh;
 }
 
 .banner {
@@ -158,8 +164,86 @@ section {
 
 .figure {
 right:10%;
-    max-width: 1080px;
-    max-height:600px;    
+max-width: 1080px;
+max-height:600px;    
 position: absolute;
 overflow: hidden;
+}
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+}
+
+.column {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+.card {
+    width: 280px;
+    margin: 14px;
+}
+
+.mob {
+    display: none;
+}
+@media (max-width: 1023px) {
+    
+.column {
+    flex-basis: 100%;
+}
+
+.mob {
+    display: inline-block;
+}
+.no-mob {
+    display: none;
+}
+}
+.blue-card {
+    padding: 130px 25px 30px 25px;
+    color: white;
+    background-color: #04093f;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+}
+
+.blue-card h3 {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.blue-card p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.89);
+}
+
+.blue-card a {
+    color: white;
+}
+
+
+.razorpay-payments {
+    background-image: url(https://www.razorpay.com/assets/home/accept-payments-bg.svg);
+
+}
+
+.white-card {
+    box-shadow: 0px 0px 14px 1px rgba(155, 155, 155, 0.116);
+    padding: 30px 25px 30px 25px;
+    color: #0d2462;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    margin: 14px;
+    border-radius: 6px;
+}
+
+.product-launches {
+    font-size: 40px;
+    font-weight: 800;
+    padding: 16px;
 }
