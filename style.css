@@ -201,6 +201,11 @@ z-index: 1;
     display: none;
 }
 
+.responsive-nav {
+    display: flex;
+    width: 100%;
+}
+
 .think-razorpay-header {
     display: flex;
     flex-direction: column;
@@ -348,7 +353,7 @@ padding: 24px 24px 0px 0px;
 }
 
 .white-shapes {
-    z-index: 300;
+    z-index: 100;
     width: 100%;
     position:absolute;
   bottom:-100px;
