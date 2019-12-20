@@ -201,6 +201,12 @@ z-index: 1;
     display: none;
 }
 
+.think-razorpay-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 24px;
+}
 .think-razorpay h2 {
     font-weight: 800;
     color: #0d2366;
@@ -208,6 +214,15 @@ z-index: 1;
 /* For mobile screens */
 
 @media (max-width: 1023px) {
+    .think-razorpay-header {
+        align-items: flex-start;
+     }
+    .white-shapes {
+        display:none;
+    }
+    body {
+        overflow-x: hidden;
+    }
     .figure {
         position: relative;
     }
@@ -215,7 +230,7 @@ z-index: 1;
         padding: 24px;
         }
 .container {
-    max-width: 50%;
+    max-width: 100%;
 }
 .banner h1 {
 max-width: 100%;
@@ -344,8 +359,20 @@ padding: 24px 24px 0px 0px;
 }
 
 .left-shape {
-    width:80%;
-    height: 100%;
+    margin-top: 50px;
+    margin-left: -100px;
+    width:900px;
+    height: 150px;
     background-color: white;
-    transform: rotate(80deg);
+    transform: rotate(4deg);
+    float:left;
+}
+
+.right-shape {
+    left:0;
+    margin-top: 40px;
+    width: 1900px;
+    height: 150px;
+    transform: rotate(-5deg);
+    background-color: white;
 }
