@@ -2,7 +2,7 @@
 
 * {
     font-family: Muli, Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
+    
 }
 .container {
     padding-left: 24px;
@@ -75,7 +75,6 @@ float: left;
 
 .hiring {
     display: inline-block;
-    box-sizing: border-box;
     border-bottom: 2px solid transparent;
     color: white;
     font-size: 14px;
@@ -139,11 +138,14 @@ float: left;
     width: 80px;
     background-color: green;
 }
-.banner {
+section {
     padding-top: 20px;
     display: flex;
     width:100vw;
     height:100vh;
+}
+
+.banner {
     background-color: #0A002C;
 }
 
@@ -152,4 +154,12 @@ float: left;
     font-weight: 800;
     color: white;
     width: 400px;
+}
+
+.figure {
+right:10%;
+    max-width: 1080px;
+    max-height:600px;    
+position: absolute;
+overflow: hidden;
 }
