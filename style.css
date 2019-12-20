@@ -8,8 +8,9 @@
     padding-left: 24px;
     padding-right: 24px;
     margin: 0 auto;
-    max-width: 1080px;
     width: 100%;
+    max-width: 1080px;
+    z-index: 100;
 }
 
 nav {
@@ -18,10 +19,6 @@ nav {
 }
 
 html, body {
-    overflow-x: hidden;
-    width: 100%;
-    height: 100%;
-    position: relative;
     margin: 0;
     padding: 0;
 }
@@ -146,8 +143,10 @@ float: left;
     background-color: #37cb9d;
 }
 section {
+    right: 0;
+    left: 0;
     padding-top: 20px;
-    width:100vw;
+    width:100%;
     min-height:100vh;
 }
 
@@ -165,8 +164,10 @@ section {
 .banner p {
     color: rgba(255, 255, 255, 0.712);
     font-size: 18px;
-    max-width: 400px;
+    max-width: 430px;
     line-height: 150%;
+    padding-top: 10px;
+    padding-bottom: 16px;
 }
 
 .figure {
@@ -175,6 +176,7 @@ max-width: 1080px;
 max-height:600px;    
 position: absolute;
 overflow: hidden;
+z-index: 1;
 }
 
 
@@ -199,17 +201,25 @@ overflow: hidden;
     display: none;
 }
 
+.think-razorpay h2 {
+    font-weight: 800;
+    color: #0d2366;
+}
 /* For mobile screens */
 
 @media (max-width: 1023px) {
-    
+    .figure {
+        position: relative;
+    }
 .banner {
         padding: 24px;
         }
-
+.container {
+    max-width: 50%;
+}
 .banner h1 {
 max-width: 100%;
-padding: 24px 24px 24px 0px;
+padding: 24px 24px 0px 0px;
 }
 
 .column {
@@ -222,12 +232,21 @@ padding: 24px 24px 24px 0px;
 .no-mob {
     display: none;
 }
+
+.white-card {
+    width: 100%;
+}
+
+.product-launches {
+    width: 100%;
+}
 }
 .blue-card {
     padding: 130px 25px 30px 25px;
     color: white;
     background-color: #04093f;
     background-repeat: no-repeat;
+    background-position: right;
     border-radius: 6px;
 }
 
@@ -311,4 +330,22 @@ padding: 24px 24px 24px 0px;
     right: 24px;
     border-radius: 50% 10% 50% 50%;
     box-shadow: 0px 10px 8px -2px rgba(0, 0, 0, 0.397);
+}
+
+.white-shapes {
+    z-index: 300;
+    width: 100%;
+    position:absolute;
+  bottom:-100px;
+  right:0px;
+  left:0;
+    height: 100px;
+    overflow: hidden;
+}
+
+.left-shape {
+    width:80%;
+    height: 100%;
+    background-color: white;
+    transform: rotate(80deg);
 }
