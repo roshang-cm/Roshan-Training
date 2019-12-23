@@ -1,4 +1,5 @@
 let todoListStateStack = [[]];
+let hideUndoTimer = null;
 
 //Data functions
 
@@ -50,6 +51,9 @@ function buildListElement(todo) {
 }
 
 function buildToDoList() {
+  if (hideUndoTimer) {
+    clearInterval(hideUndoTimer);
+  }
   console.log(todoListStateStack);
   while (listContainerElement.lastElementChild) {
     listContainerElement.removeChild(listContainerElement.lastElementChild);
@@ -58,10 +62,8 @@ function buildToDoList() {
   todoList.forEach(todo => {
     listContainerElement.appendChild(buildListElement(todo));
   });
-  undoChangesElement.style.display = todoListStateStack.length
-    ? "block"
-    : "none";
-  setInterval(() => {
+  undoChangesElement.style.display = "block";
+  hideUndoTimer = setInterval(() => {
     undoChangesElement.style.display = "none";
   }, 3000);
 }
@@ -81,11 +83,17 @@ titleElement.innerHTML = "To-Do list using JS";
 userInputElement.setAttribute("type", "text");
 userInputElement.setAttribute("placeholder", "Type something here");
 userInputElement.setAttribute("required", true);
+userInputElement.addEventListener("keyup", keyUpEvent => {
+  if (keyUpEvent.keyCode == 13) {
+    submitButtonElement.click();
+  }
+});
 submitButtonElement.setAttribute("type", "button");
 submitButtonElement.innerHTML = "Add To-Do";
 submitButtonElement.addEventListener("click", () => {
   if (userInputElement.value) {
     addToDo(userInputElement.value);
+    userInputElement.value = "";
   }
 });
 formElement.appendChild(userInputElement);
