@@ -1,123 +1,70 @@
-let todoListStateStack = [[]];
-let hideUndoTimer = null;
+let bird = document.querySelector(".bird");
+let pipe = document.querySelector(".pipe");
+let dx = -1;
+let dy = 0;
+let bird_x = 1;
+let pipe_x = 230;
+let bird_y = 100;
+let jump = 5;
+let gamePaused = false;
 
-//Data functions
+gravity = 0.1;
 
-function addToDo(todoText) {
-  let todoList = todoListStateStack[todoListStateStack.length - 1].slice();
-  let todo = {};
-  todo.title = todoText;
-  todo.id = todoList.length;
-  todoList.push(todo);
-  todoListStateStack.push(todoList);
-  buildToDoList();
+function reset() {
+  dx = -1;
+  dy = -5;
+  bird_x = 1;
+  pipe_x = 230;
+  bird_y = 100;
+  jump = 5;
 }
 
-function deleteToDo(todoId) {
-  if (hideUndoTimer) {
-    clearInterval(hideUndoTimer);
+function gameOver() {
+  gamePaused = true;
+}
+function detectCollision() {
+  //
+  if (bird_x > pipe_x - 64 && bird_y < 190) {
+    gameOver();
+  } else {
   }
-  let todoList = todoListStateStack[todoListStateStack.length - 1].slice();
-  let newTodoList = [];
-  todoList.forEach(todo => {
-    if (todo.id != todoId) {
-      newTodoList.push(todo);
-    }
-  });
-  todoListStateStack.push(newTodoList);
-  buildToDoList();
-  undoChangesElement.style.display = "block";
-  hideUndoTimer = setInterval(() => {
-    undoChangesElement.style.display = "none";
-  }, 3000);
 }
-
-function undoChange() {
-  if (todoListStateStack.length != 0) {
-    todoListStateStack.pop();
+function render() {
+  if (bird_y < 0) {
+    bird_y = 0;
   }
-  buildToDoList();
-}
+  if (bird_y > 430) {
+    bird_y = 0;
+    dy = 0;
+    bird_x = 0;
+    gameOver();
 
-//Builders
-
-function buildListElement(todo) {
-  let listItem = document.createElement("li");
-  let listItemContent = document.createElement("div");
-  listItemContent.classList.add("list-container");
-  let listItemTitle = document.createElement("b");
-  let deleteItemButton = document.createElement("button");
-  let deleteIcon = document.createElement("i");
-  deleteIcon.innerText = "delete_outline";
-  deleteIcon.classList.add("material-icons");
-  deleteItemButton.appendChild(deleteIcon);
-  deleteItemButton.classList.add("deleteButton");
-  deleteItemButton.addEventListener("click", index => {
-    deleteToDo(todo.id);
-  });
-  listItemTitle.innerText = todo.title;
-  listItemContent.appendChild(listItemTitle);
-  listItemContent.appendChild(deleteItemButton);
-  listItem.appendChild(listItemContent);
-  return listItem;
-}
-
-function buildToDoList() {
-  console.log(todoListStateStack);
-  while (listContainerElement.lastElementChild) {
-    listContainerElement.removeChild(listContainerElement.lastElementChild);
+    //Also make game over
   }
-  let todoList = todoListStateStack[todoListStateStack.length - 1];
-  todoList.forEach(todo => {
-    listContainerElement.appendChild(buildListElement(todo));
-  });
+  if (pipe_x < -30) {
+    pipe_x = 230;
+  }
+  detectCollision();
+  if (!gamePaused) {
+    dy += gravity;
+    bird_y += dy;
+    pipe_x += dx;
+  } else {
+    document.body.classList.add("paused");
+  }
+
+  pipe.style.marginLeft = pipe_x + "px";
+  bird.style.marginLeft = bird_x + "px";
+  bird.style.marginTop = bird_y + "px";
+  bird.style.transform = `rotate(${dy * 10}deg)`;
 }
 
-//Setting up the initial layout
+setInterval(() => {
+  render();
+}, 10);
 
-const titleElement = document.createElement("h1");
-const userInputElement = document.createElement("input");
-const submitButtonElement = document.createElement("button");
-const formElement = document.createElement("div");
-const listContainerElement = document.createElement("ul");
-const undoChangesElement = document.createElement("button");
-undoChangesElement.innerText = "Undo Changes";
-undoChangesElement.style.display = "none";
-undoChangesElement.addEventListener("click", () => {
-  undoChange();
-  undoChangesElement.style.display = "none";
-});
-titleElement.innerText = "To-Do list using JS";
-userInputElement.setAttribute("type", "text");
-userInputElement.setAttribute("placeholder", "Type something here");
-userInputElement.setAttribute("required", true);
-userInputElement.addEventListener("keyup", keyUpEvent => {
-  if (keyUpEvent.key == "Enter") {
-    submitButtonElement.click();
+document.addEventListener("keyup", e => {
+  if (e.key == "Enter") {
+    dy = -jump;
   }
 });
-submitButtonElement.setAttribute("type", "button");
-submitButtonElement.innerText = "Add To-Do";
-submitButtonElement.addEventListener("click", () => {
-  if (userInputElement.value) {
-    addToDo(userInputElement.value);
-    userInputElement.value = "";
-  }
-});
-let styleElement = document.createElement("link");
-styleElement.setAttribute("href", "style.css");
-styleElement.setAttribute("rel", "stylesheet");
-let materialIconsElement = document.createElement("link");
-materialIconsElement.setAttribute(
-  "href",
-  "https://fonts.googleapis.com/icon?family=Material+Icons"
-);
-materialIconsElement.setAttribute("rel", "stylesheet");
-document.head.appendChild(materialIconsElement);
-document.head.appendChild(styleElement);
-formElement.appendChild(userInputElement);
-formElement.appendChild(submitButtonElement);
-document.body.appendChild(titleElement);
-document.body.appendChild(formElement);
-document.body.appendChild(undoChangesElement);
-document.body.appendChild(listContainerElement);

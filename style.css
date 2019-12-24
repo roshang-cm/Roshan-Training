@@ -1,80 +1,44 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
-
 body {
-  font-family: Poppins, Arial, Helvetica, sans-serif;
+  background: black;
 }
 
+.paused {
+  filter: grayscale(100%);
+}
 h1 {
-  text-align: center;
-  color: rgb(179, 38, 57);
-}
-
-div {
-  background-color: rgb(245, 245, 245);
-  text-align: center;
-}
-
-input {
-  border: 0;
-  outline: 0;
-  padding: 14px;
-  margin: 8px;
-  font-size: 18px;
-  font-family: Poppins, Arial, Helvetica, sans-serif;
-  border-radius: 12px;
-}
-
-button {
-  border: 0;
-  outline: 0;
-  padding: 14px;
-  margin: 8px;
-  font-size: 18px;
-  background-color: rgb(21, 58, 138);
   color: white;
-  border-radius: 12px;
-  font-family: Poppins, Arial, Helvetica, sans-serif;
-  transition: 0.3s all ease;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-button:hover {
-  background-color: rgb(12, 38, 94);
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
-.deleteButton {
-  background: transparent;
-  color: rgb(204, 52, 52);
-  transition: 0.3s all ease;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-}
-
-.deleteButton:hover {
-  background: transparent;
-  box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.274);
-}
-
-.list-container {
+.container {
   margin: 0 auto;
+  max-width: 1080px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  max-width: 300px;
-  justify-content: space-between;
-  border: 2px solid rgba(0, 0, 0, 0.158);
-  border-radius: 12px;
-  padding: 0px 12px;
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: normal;
+}
+
+.board {
+  overflow: hidden;
+  min-width: 300px;
+  min-height: 500px;
+  background-color: rgb(255, 241, 210);
+  z-index: 100;
+}
+
+.bird {
+  display: block;
+  position: absolute;
+  z-index: 7;
+}
+
+.bird img {
+  height: 64px;
+}
+
+.pipe {
+  width: 60px;
+  height: 200px;
+  background-color: green;
+  position: absolute;
+  z-index: 7;
 }
